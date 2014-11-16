@@ -20,8 +20,8 @@ They are
 
 create_application_replica_forests	Creates replica forests for the application database
 delete_application_replica_forests	Removes replica forests for the application database
-create_system_replica_forests	Creates replica forests for the system databases
-delete_system_replica_forests	Removes replica forests for the system databases
+# create_system_replica_forests	Creates replica forests for the system databases
+# delete_system_replica_forests	Removes replica forests for the system databases
 
 The required configuration is insertion of 
 
@@ -31,10 +31,11 @@ into your properties file. The number of paths indicates the level of replicatio
 
 The script places using a round robin algorithm i.e. in an n host cluster, the replica forests for host 1 are placed one on host2, one on host 3 ... one on host n, one on host 2 until the number of forests to be replicated for host 1 is reached. The placement for host2 is the same, but placement starts at host3. This algorithm ensures that in the event of a single host failure, the extra load is distributed across the cluster, rather than falling onto just one host. Note that your modules database forests also have failover assets created.
 
-The command create_system_replica_forests creates failover forests for the App-Services, Security, Schema and Triggers databases - which is required for a fully resilient system. They also use the replica-forest-directory parameter.
+#The command create_system_replica_forests creates failover forests for the App-Services, Security, Schema and Triggers databases - which is required for a fully resilient system. They also use the replica-forest-directory parameter.
 
-The commands delete_application_replica_forests and delete_system_replica_forests reverse the above process.
+# The commands delete_application_replica_forests and delete_system_replica_forests reverse the above process.
 
+You're probably best replicating App-Services/Security/Schemas by hand for the time being. Adding replica forests takes the databases concerned offline, and for Security and Schemas that means the transaction will be terminated. Comment in/out the databases you want replicated in app_specific.rb.
 This bundle also supports ml env restart_failed_forests which will restore master forests to master status, in the event of failover having occurred. Note this will not otherwise happen automatically.
 
 Database Replication
