@@ -8,7 +8,7 @@ This archive provides extensions to Roxy. They fall into three categories
 
 **Installation**: tar xvf this archive. Then cp -R the contents into your project. Probably best to back your project up first.
 
-To see a full list of commands, then `do ml local help`. A list is also given below under the heading 'Extension Command List'.
+To see a full list of commands, then do `ml local help`. A list is also given below under the heading 'Extension Command List'.
 
 ## Automated Setup of Failover
 
